@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.radiusandroidapp.R
 import com.example.radiusandroidapp.databinding.FragmentHomeRadiusBinding
+import com.example.radiusandroidapp.db.AppDatabase
+import com.example.radiusandroidapp.repository.RadiusRepository
 import com.example.radiusandroidapp.viewmodel.RadiusViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,7 +18,8 @@ class HomeRadiusFragment : Fragment() {
     private var _binding: FragmentHomeRadiusBinding? = null
     private val binding get() = _binding!!
 
-    private val radiusViewModel by viewModels<RadiusViewModel>()
+//    private val radiusViewModel by viewModels<RadiusViewModel>()
+private val viewModel: RadiusViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +32,14 @@ class HomeRadiusFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        radiusViewModel.getAllProduct()
+
+        // Observe the LiveData in the view model
+        viewModel.radiusLiveData.observe(viewLifecycleOwner, { result ->
+            // Handle the data as needed
+        })
+
+        // Trigger the data retrieval
+        viewModel.getAllProduct()
     }
 
 
