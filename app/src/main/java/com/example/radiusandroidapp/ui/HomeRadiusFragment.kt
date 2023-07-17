@@ -32,10 +32,10 @@ private val viewModel: RadiusViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // Observe the LiveData in the view model
         viewModel.radiusLiveData.observe(viewLifecycleOwner, { result ->
             // Handle the data as needed
+
         })
 
         // Trigger the data retrieval
